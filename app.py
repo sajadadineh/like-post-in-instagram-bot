@@ -21,4 +21,16 @@ def login():
     password_element.send_keys(Keys.ENTER)
     sleep(2)
 
+def notNowButton():
+    driver.implicitly_wait(20)
+    driver.find_element_by_xpath(constants.not_now_button).click()
+    sleep(2)
+
+def findHashtag():
+    driver.get(constants.hashtag_url.format("HASHTAG"))
+    driver.implicitly_wait(20)
+
+
 login()
+notNowButton()
+findHashtag()
