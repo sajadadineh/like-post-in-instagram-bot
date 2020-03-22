@@ -1,4 +1,4 @@
-# like-post-in-instagram(Coming Soon)
+# like-post-in-instagram
 This Python program is a robot that likes the images of a hashtag
 
 ## Advantages
