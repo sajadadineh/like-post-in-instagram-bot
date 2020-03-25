@@ -9,7 +9,6 @@ This Python program is a robot that likes the images of a hashtag
 - In this robot, the limitations of Instagram are met "350 Likes per hour"
 - selenium
 - python
-- use mobileEmulation
 - headless
 
 ## How to use it?
