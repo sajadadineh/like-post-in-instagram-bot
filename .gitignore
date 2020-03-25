@@ -128,5 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# hide folder
+# hide folder and driver
 venv
+chromedriver
