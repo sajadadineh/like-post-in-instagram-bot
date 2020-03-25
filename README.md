@@ -17,7 +17,7 @@ This Python program is a robot that likes the images of a hashtag
 
 2.Clone the project `git clone https://github.com/sajadadineh/like-post-in-instagram-bot.git`
 
-3.Create a virtualenv `virtualenv -p python3 venv`
+3.Create a virtualenv `virtualenv -p python venv`
 
 4.Connect to virtualenv `source venv/bin/activate`
 
