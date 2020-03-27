@@ -7,9 +7,7 @@ import pass
 
 option = webdriver.ChromeOptions()
 # option.add_argument('headless')
-mobile_emulation = {"deviceName": "Nexus 5"}
-option.add_experimental_option("mobileEmulation", mobile_emulation)
-driver = webdriver.Chrome(options=option, executable_path='./chromedriver', chrome_options=option)
+driver = webdriver.Chrome(Chrome_options=option, executable_path='./chromedriver')
 driver.get(constants.base_url)
 
 def login():
