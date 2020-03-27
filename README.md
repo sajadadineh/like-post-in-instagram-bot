@@ -11,6 +11,10 @@ This Python program is a robot that likes the images of a hashtag
 - python
 - headless
 
+### Todo
+
+-[ ] make GUI for project with flask
+
 ## How to use it?
 
 1.Install python, pip, virtualenv

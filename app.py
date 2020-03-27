@@ -2,10 +2,11 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
+import datetime
 import constants
 
 option = webdriver.ChromeOptions()
-# option.add_argument('headless')
+option.add_argument('headless')
 driver = webdriver.Chrome(chrome_options=option, executable_path='./chromedriver')
 driver.maximize_window()
 driver.get(constants.base_url)
@@ -16,33 +17,46 @@ hashtag = raw_input("please Enter the hashtag you want : " )
 
 def login():
     driver.implicitly_wait(20)
-    driver.find_element_by_xpath(constants.username).send_keys(username)
-    driver.find_element_by_xpath(constants.password).send_keys(password,Keys.ENTER)
-    sleep(2)
+    try:
+        driver.find_element_by_xpath(constants.username).send_keys(username)
+        driver.find_element_by_xpath(constants.password).send_keys(password,Keys.ENTER)
+    except:
+        print(">>>Signup failed\n>>>It may be a problem with your username or password")
 
 def notNowButton():
     try:
         driver.implicitly_wait(20)
         driver.find_element_by_xpath(constants.not_now_button)
-        print(constants.login_successfuly)
+        print(">>>login successfuly")
     except:
-        print("login successfuly")
+        print(">>>login successfuly")
 
 def findHashtag():
-    driver.implicitly_wait(20)
-    driver.get(constants.hashtag_url.format("HASHTAG"))
-    print("find you hashtag")
+    try:
+        driver.implicitly_wait(20)
+        driver.get(constants.hashtag_url.format(hashtag))
+        print(">>>find you hashtag")
+    except:
+        print(">>>hashtag not found")
 
 def clickPostAndLike():
     driver.implicitly_wait(20)
-    print("start like post")
+    print(">>>start like post")
     driver.find_element_by_xpath(constants.click_post).click()
+    num_like = 0
     while True:
-        sleep(2)
-        driver.implicitly_wait(20)
-        driver.find_element_by_xpath(constants.like).click()
-        driver.find_element_by_xpath(constants.next_button).click()
-    
+        try:
+            sleep(2)
+            driver.find_element_by_xpath(constants.like).click()
+            num_like += 1
+            driver.find_element_by_xpath(constants.next_button).click()
+            if(num_like == 300): # the limitations of Instagram are met "350 Likes per hour"
+                print(">>>Sleep up to 1 hour")
+                sleep(3600)
+                num_like = 0
+        except:
+            print("like finished")
+            closeDriver()
 
 def closeDriver():
     driver.close()
