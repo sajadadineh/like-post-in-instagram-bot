@@ -7,6 +7,7 @@ import constants
 option = webdriver.ChromeOptions()
 # option.add_argument('headless')
 driver = webdriver.Chrome(chrome_options=option, executable_path='./chromedriver')
+driver.maximize_window()
 driver.get(constants.base_url)
 
 username = raw_input("please Enter your username : ")
@@ -30,15 +31,18 @@ def notNowButton():
 def findHashtag():
     driver.implicitly_wait(20)
     driver.get(constants.hashtag_url.format("HASHTAG"))
-    driver.implicitly_wait(20)
+    print("find you hashtag")
 
 def clickPostAndLike():
-    driver.find_element_by_xpath(constants.click_post).click()
     driver.implicitly_wait(20)
-    driver.find_element_by_xpath(constants.like).click()
-    scroll = driver
+    print("start like post")
+    driver.find_element_by_xpath(constants.click_post).click()
+    while True:
+        sleep(2)
+        driver.implicitly_wait(20)
+        driver.find_element_by_xpath(constants.like).click()
+        driver.find_element_by_xpath(constants.next_button).click()
     
-
 
 def closeDriver():
     driver.close()
@@ -46,4 +50,4 @@ def closeDriver():
 login()
 notNowButton()
 findHashtag()
-# clickPostAndLike()
+clickPostAndLike()
