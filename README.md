@@ -14,6 +14,7 @@ This Python program is a robot that likes the images of a hashtag
 ### Todo
 
 - [ ] make GUI for project with flask
+- [ ] use docker and deploy
 
 ## How to use it?
 
