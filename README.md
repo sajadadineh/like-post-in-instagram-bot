@@ -13,7 +13,7 @@ This Python program is a robot that likes the images of a hashtag
 
 ### Todo
 
--[ ] make GUI for project with flask
+- [ ] make GUI for project with flask
 
 ## How to use it?
 
