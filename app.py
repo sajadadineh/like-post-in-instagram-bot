@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
-import datetime
 import constants
+
 
 option = webdriver.ChromeOptions()
 option.add_argument('headless')
@@ -14,6 +14,9 @@ driver.get(constants.base_url)
 username = raw_input("please Enter your username : ")
 password = raw_input("please Enter your password : ")
 hashtag = raw_input("please Enter the hashtag you want : " )
+
+def closeDriver():
+    driver.close()
 
 def login():
     driver.implicitly_wait(20)
@@ -45,23 +48,22 @@ def clickPostAndLike():
     driver.find_element_by_xpath(constants.click_post).click()
     num_like = 0
     while True:
-        try:
-            sleep(2)
-            driver.find_element_by_xpath(constants.like).click()
-            num_like += 1
-            driver.find_element_by_xpath(constants.next_button).click()
-            if(num_like == 300): # the limitations of Instagram are met "350 Likes per hour"
-                print(">>>Sleep up to 1 hour")
-                sleep(3600)
-                num_like = 0
-        except:
-            print("like finished")
-            closeDriver()
+        sleep(2)
+        driver.find_element_by_xpath(constants.like).click()
+        num_like += 1
+        driver.find_element_by_xpath(constants.next_button).click()
+        if(num_like == 300): # the limitations of Instagram are met "350 Likes per hour"
+            print(">>>sleep up to 1 hour")
+            sleep(3600)
+            print(">>>start like post again")
+            num_like = 0
 
-def closeDriver():
-    driver.close()
 
 login()
 notNowButton()
 findHashtag()
-clickPostAndLike()
+try:
+    clickPostAndLike()
+except:
+    print("like finished")
+    closeDriver()
