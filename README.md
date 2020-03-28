@@ -15,6 +15,7 @@ This Python program is a robot that likes the images of a hashtag
 
 - [ ] make GUI for project with flask
 - [ ] use docker and deploy
+- [ ] get number hashtag
 
 ## How to use it?
 
